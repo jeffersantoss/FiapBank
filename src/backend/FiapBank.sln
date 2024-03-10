@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34607.119
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{76E3E370-3E05-4FC8-B163-4AD6F3DD8FA5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{2C7E92CC-BC44-4B79-B8AC-5D316BF14120}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Api", "Api", "{37FE49BC-8068-4EED-92D4-5FA82E53F3C1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FiapBank.Domain", "Core\FiapBank.Domain\FiapBank.Domain.csproj", "{BF265E4B-65A5-4095-9449-F63F169A64E6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FiapBank.Domain.Test", "Tests\FiapBank.Domain.Test\FiapBank.Domain.Test.csproj", "{9BFB0857-9C0C-4210-841D-2E5B36B7DAD0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FiapBank.WebApi", "Api\FiapBank.WebApi\FiapBank.WebApi.csproj", "{35F6827A-B4DF-4C6C-A674-A02AE60A35D6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FiapBank.Infraestructure", "Core\FiapBank.Infraestructure\FiapBank.Infraestructure.csproj", "{3EEE196D-0388-4BB0-8ED7-46A6A701F70D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BF265E4B-65A5-4095-9449-F63F169A64E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF265E4B-65A5-4095-9449-F63F169A64E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF265E4B-65A5-4095-9449-F63F169A64E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF265E4B-65A5-4095-9449-F63F169A64E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9BFB0857-9C0C-4210-841D-2E5B36B7DAD0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9BFB0857-9C0C-4210-841D-2E5B36B7DAD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9BFB0857-9C0C-4210-841D-2E5B36B7DAD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9BFB0857-9C0C-4210-841D-2E5B36B7DAD0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35F6827A-B4DF-4C6C-A674-A02AE60A35D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35F6827A-B4DF-4C6C-A674-A02AE60A35D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35F6827A-B4DF-4C6C-A674-A02AE60A35D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35F6827A-B4DF-4C6C-A674-A02AE60A35D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3EEE196D-0388-4BB0-8ED7-46A6A701F70D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3EEE196D-0388-4BB0-8ED7-46A6A701F70D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3EEE196D-0388-4BB0-8ED7-46A6A701F70D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3EEE196D-0388-4BB0-8ED7-46A6A701F70D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{BF265E4B-65A5-4095-9449-F63F169A64E6} = {2C7E92CC-BC44-4B79-B8AC-5D316BF14120}
+		{9BFB0857-9C0C-4210-841D-2E5B36B7DAD0} = {76E3E370-3E05-4FC8-B163-4AD6F3DD8FA5}
+		{35F6827A-B4DF-4C6C-A674-A02AE60A35D6} = {37FE49BC-8068-4EED-92D4-5FA82E53F3C1}
+		{3EEE196D-0388-4BB0-8ED7-46A6A701F70D} = {2C7E92CC-BC44-4B79-B8AC-5D316BF14120}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {52A54F8F-F6FF-4687-A55C-38FF64815439}
+	EndGlobalSection
+EndGlobal
