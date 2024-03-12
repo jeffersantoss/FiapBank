@@ -4,23 +4,28 @@ public class Customer
 {
     public Customer() { }
 
-    public Customer(string name, Account account)
-    {
-        Name = name;
-        Account = account;
-    }
-    public Guid Id { get; set; } = Guid.NewGuid();
+    public Guid Id { get; set; }
 
     public string Name { get; private set; } = string.Empty;
 
-    public Account Account { get; private set; } = new Account(0);
+    public CheckingAccount CheckingAccount { get; private set; } = new CheckingAccount(0, 0);
 
     public string GetName() => Name;
 
-    public Account GetAccount() => Account ?? throw new InvalidOperationException("Account not found");
+    public CheckingAccount GetAccount() => CheckingAccount ?? throw new InvalidOperationException("Checking Account not found");
 
     public void SetName(string value)
     {
         Name = value;
+    }
+
+    public static Customer CreateCustomer(string name, CheckingAccount checkingAccount)
+    {
+        return new Customer
+        {
+            Id = Guid.NewGuid(),
+            Name = name,
+            CheckingAccount = checkingAccount ?? throw new ArgumentNullException(nameof(checkingAccount))
+        };
     }
 }

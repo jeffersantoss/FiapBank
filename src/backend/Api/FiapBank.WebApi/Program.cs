@@ -1,5 +1,7 @@
 using Carter;
 using FiapBank.Domain;
+using FiapBank.WebApi;
+using FiapBank.WebApi.Filters;
 using Microsoft.EntityFrameworkCore;
 using Swashbuckle.AspNetCore.SwaggerUI;
 using System.Reflection;
@@ -10,6 +12,11 @@ builder.Services.AddDbContext<FiapBankContext>(options =>
     options.UseInMemoryDatabase("FiapBankDb"));
 
 builder.Services.AddCarter();
+
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+});
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
@@ -22,6 +29,9 @@ builder.Services.AddSwaggerGen(options =>
         Contact = new() { Name = "FIAP", Email = "https://www.fiap.com.br" }
     });
 
+    options.DescribeAllParametersInCamelCase();
+    options.SchemaFilter<EnumSchemaFilter>();
+
     // Set the comments path for the Swagger JSON and UI.
     var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
     var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
@@ -30,9 +40,7 @@ builder.Services.AddSwaggerGen(options =>
 
 var app = builder.Build();
 
-//if (app.Environment.IsDevelopment())
-//{
-//}
+app.UseCors();
 
 app.UseSwagger(opt =>
 {
@@ -43,9 +51,11 @@ app.UseSwaggerUI(c =>
 {
     c.SwaggerEndpoint("v1/swagger.json", "Contracts API");
     c.DocExpansion(DocExpansion.List);
-    c.DefaultModelsExpandDepth(-1);
+    c.DefaultModelExpandDepth(3);
+    c.DefaultModelsExpandDepth(2);
     c.InjectStylesheet("/swagger-ui/custom.css");
     c.DisplayRequestDuration();
+    c.DefaultModelRendering(ModelRendering.Model);
     c.EnableFilter();
     c.EnableValidator();
 });
@@ -55,19 +65,6 @@ app.UseHttpsRedirection();
 
 app.MapCarter();
 
-// Simulação em memória dos clientes e contas
-using (var scope = app.Services.CreateScope())
-{
-    var context = scope.ServiceProvider.GetRequiredService<FiapBankContext>();
-    var customers = new List<Customer>
-    {
-        new("Jefferson", new Account(1000)),
-        new("Beto", new Account(2000)),
-        new("Felipe", new Account(3000)),
-        new("Henrique", new Account(4000)),
-    };
-    context.Customers.AddRange(customers);
-    context.SaveChanges();
-}
+app.InitialSeed();
 
 app.Run();

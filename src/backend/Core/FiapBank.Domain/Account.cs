@@ -2,21 +2,30 @@
 
 namespace FiapBank.Domain;
 
-public class Account(double balance)
+public class Account(decimal balance)
 {
-    public Guid Id { get; set; } = Guid.NewGuid();
+    public Guid Id { get; set; }
 
-    public double Balance { get; private set; } = balance;
+    public decimal Balance { get; private set; } = balance;
 
     public List<Transaction> Transactions { get; private set; } = [];
 
-    public void Deposit(double amount)
+    public bool Deposit(decimal amount)
     {
-        Balance += amount;
-        Transactions.Add(new Transaction(amount, TransactionType.Deposit));
+        try
+        {
+            Balance += amount;
+            Transactions.Add(new Transaction(amount, TransactionType.Deposit));
+        }
+        catch (Exception)
+        {
+            return false;
+        }
+
+        return true;
     }
 
-    public virtual bool Withdraw(double amount, double overdraftLimit = default)
+    public virtual bool Withdraw(decimal amount, decimal overdraftLimit = default)
     {
         bool result = false;
         if (amount <= Balance + overdraftLimit)
@@ -30,12 +39,12 @@ public class Account(double balance)
 
     public IEnumerable<Transaction> GetTransactions() => Transactions;
 
-    public double GetBalance()
+    public decimal GetBalance()
     {
         return Balance;
     }
 
-    public double GetOverdraftBalance(double overdraftLimit)
+    public decimal GetOverdraftBalance(decimal overdraftLimit)
     {
         return Balance + overdraftLimit;
     }

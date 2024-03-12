@@ -14,7 +14,7 @@ public class FiapBankContext(DbContextOptions<FiapBankContext> options) : DbCont
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<Bank>().HasData(new Bank("FiapBank"));
+        modelBuilder.Entity<Bank>().HasData(Bank.CreateBank("FiapBank"));
     }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

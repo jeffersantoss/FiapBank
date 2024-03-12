@@ -4,16 +4,20 @@ public class Bank
 {
     public Bank() { }
 
-    public Bank(string name)
-    {
-        Name = name;
-    }
-
-    public Guid Id { get; set; } = Guid.NewGuid();
+    public Guid Id { get; set; }
 
     public string Name { get; private set; } = string.Empty;
 
     private List<Customer> Customers { get; set; } = new();
+
+    public static Bank CreateBank(string name)
+    {
+        return new Bank
+        {
+            Id = Guid.NewGuid(),
+            Name = name
+        };
+    }
 
     public void AddCustomer(Customer customer)
     {

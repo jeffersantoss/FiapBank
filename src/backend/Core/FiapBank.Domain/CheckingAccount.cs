@@ -8,16 +8,16 @@ public class CheckingAccount : Account
     {
     }
 
-    public CheckingAccount(double initBalance, double overdraft) : base(initBalance)
+    public CheckingAccount(decimal initBalance, decimal overdraft) : base(initBalance)
     {
         OverdraftLimit = overdraft;
     }
 
-    public double OverdraftLimit { get; private set; }
+    public decimal OverdraftLimit { get; private set; }
 
-    public override bool Withdraw(double amount, double overdraft = 0)
+    public override bool Withdraw(decimal amount, decimal overdraft = 0)
     {
-        double effectiveBalance = GetBalance() + OverdraftLimit;
+        decimal effectiveBalance = GetBalance() + OverdraftLimit;
 
         if (amount <= effectiveBalance)
         {
@@ -26,7 +26,6 @@ public class CheckingAccount : Account
             if (GetBalance() < 0)
             {
                 OverdraftLimit -= Math.Abs(GetBalance());
-                base.Transactions.Add(new Transaction(Math.Abs(GetBalance()), TransactionType.Overdraft));
             }
 
             return true;
@@ -35,7 +34,7 @@ public class CheckingAccount : Account
         return false;
     }
 
-    public double GetOverdraftLimit()
+    public decimal GetOverdraftLimit()
     {
         return OverdraftLimit;
     }

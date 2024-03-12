@@ -1,8 +1,17 @@
 ﻿namespace FiapBank.Domain.Enums;
 
+/// <summary>
+/// Identifica o tipo de transação
+/// </summary>
 public enum TransactionType
 {
+    /// <summary>
+    /// Depósito
+    /// </summary>
     Deposit,
-    Withdraw,
-    Overdraft
+
+    /// <summary>
+    /// Saque
+    /// </summary>
+    Withdraw
 }

@@ -4,16 +4,16 @@ public class SavingsAccount : Account
 {
     public SavingsAccount() : base(0) { }
 
-    public SavingsAccount(double initBalance, double interestRate) : base(initBalance)
+    public SavingsAccount(decimal initBalance, decimal interestRate) : base(initBalance)
     {
         InterestRate = interestRate;
     }
 
-    public double InterestRate { get; private set; }
+    public decimal InterestRate { get; private set; }
 
-    public void AddInterest()
+    public void AddInterest(string description)
     {
-        double interest = GetBalance() * InterestRate / 100;
+        decimal interest = GetBalance() * InterestRate / 100;
         Deposit(interest);
     }
 }

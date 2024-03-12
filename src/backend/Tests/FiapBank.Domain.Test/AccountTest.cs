@@ -27,7 +27,7 @@ public class AccountTest
         account.Withdraw(value);
 
         // Assert
-        Assert.Equal(50, account.GetBalance(), 0.001);
+        Assert.Equal(50, account.GetBalance());
     }
 
     [Fact]
